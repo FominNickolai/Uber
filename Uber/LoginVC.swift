@@ -39,7 +39,8 @@ class LoginVC: UIViewController {
         
         if emailTextField.text == "" || passwordTextField.text == "" {
             
-            displayAlertController(withTitle: "Missing Information", andMessage: "You must provide both a email and password")
+            displayAlertController(withTitle: StringsConstants.alertControllerCredentialErrorTitle,
+                                   andMessage: StringsConstants.alertControllerCredentialErrorMessage)
             
         } else {
             
@@ -74,15 +75,15 @@ class LoginVC: UIViewController {
         
         if signUpMode {
             
-            topButton.setTitle("Log In", for: .normal)
-            bottomButton.setTitle("Switch to Sign Up", for: .normal)
+            topButton.setTitle(StringsConstants.logInButtonTitle, for: .normal)
+            bottomButton.setTitle(StringsConstants.switchToSignUpButtonTitle, for: .normal)
             driverRiderStack.isHidden = true
             signUpMode = false
             
         } else {
             
-            topButton.setTitle("Sign Up", for: .normal)
-            bottomButton.setTitle("Switch to Log In", for: .normal)
+            topButton.setTitle(StringsConstants.SignUpButtonTitle, for: .normal)
+            bottomButton.setTitle(StringsConstants.switchToLogInButtonTitle, for: .normal)
             driverRiderStack.isHidden = false
             signUpMode = true
             

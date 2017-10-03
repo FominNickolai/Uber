@@ -40,7 +40,7 @@ class RiderVC: UIViewController {
                 
                 if userEmail == email {
                     
-                    self.isStillCallingUber(buttonTitle: "Cancel Uber", hasBeenCanceled: true)
+                    self.isStillCallingUber(buttonTitle: StringsConstants.cancelUberButtonTitle, hasBeenCanceled: true)
                     
                 }
                 
@@ -67,7 +67,7 @@ class RiderVC: UIViewController {
                 
                 dataBaseRef.child(DataBaseFieldsNames.rideRequests).child(user.uid).removeValue()
                 
-                isStillCallingUber(buttonTitle: "Call an Uber", hasBeenCanceled: false)
+                isStillCallingUber(buttonTitle: StringsConstants.callUberButtonTitle, hasBeenCanceled: false)
                 
             } else {
                 
@@ -78,7 +78,7 @@ class RiderVC: UIViewController {
                 
                 dataBaseRef.child(DataBaseFieldsNames.rideRequests).child(user.uid).setValue(rideRequestDictionary)
                 
-                isStillCallingUber(buttonTitle: "Cancel Uber", hasBeenCanceled: true)
+                isStillCallingUber(buttonTitle: StringsConstants.cancelUberButtonTitle, hasBeenCanceled: true)
                 
             }
             
@@ -121,7 +121,7 @@ extension RiderVC: CLLocationManagerDelegate {
             //Annotation Create and Add to mapView
             let annotation = MKPointAnnotation()
             annotation.coordinate = center
-            annotation.title = "Your Location"
+            annotation.title = StringsConstants.annotationTitle
             mapView.addAnnotation(annotation)
             
         }
