@@ -15,6 +15,7 @@
 		B7B778D11F83B48F000287CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7B778CF1F83B48F000287CC /* LaunchScreen.storyboard */; };
 		B7B778D91F83B4D6000287CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B778D81F83B4D2000287CC /* GoogleService-Info.plist */; };
 		B7B778DB1F8404B7000287CC /* RiderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778DA1F8404B7000287CC /* RiderVC.swift */; };
+		B7B778DD1F840A71000287CC /* DataBaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778DC1F840A71000287CC /* DataBaseConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		B7B778D21F83B48F000287CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7B778D81F83B4D2000287CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B7B778DA1F8404B7000287CC /* RiderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderVC.swift; sourceTree = "<group>"; };
+		B7B778DC1F840A71000287CC /* DataBaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseConstants.swift; sourceTree = "<group>"; };
 		F3750E61174011E4A12EA9B1 /* Pods-Uber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uber.release.xcconfig"; path = "Pods/Target Support Files/Pods-Uber/Pods-Uber.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 				B7B778CF1F83B48F000287CC /* LaunchScreen.storyboard */,
 				B7B778D21F83B48F000287CC /* Info.plist */,
 				B7B778D81F83B4D2000287CC /* GoogleService-Info.plist */,
+				B7B778DC1F840A71000287CC /* DataBaseConstants.swift */,
 			);
 			path = Uber;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7B778DD1F840A71000287CC /* DataBaseConstants.swift in Sources */,
 				B7B778DB1F8404B7000287CC /* RiderVC.swift in Sources */,
 				B7B778C91F83B48F000287CC /* LoginVC.swift in Sources */,
 				B7B778C71F83B48F000287CC /* AppDelegate.swift in Sources */,
