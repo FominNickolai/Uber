@@ -20,6 +20,7 @@ class RiderVC: UIViewController {
     var locationManager = CLLocationManager()
     var dataBaseRef: DatabaseReference?
     var userLocation = CLLocationCoordinate2D()
+    var uberHasBeenCalled = false
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -40,12 +41,32 @@ class RiderVC: UIViewController {
     
     @IBAction func callUberTapped(_ sender: UIButton) {
         
-        if let email = Auth.auth().currentUser?.email {
-
-            let rideRequestDictionary: [String: Any] = ["email": email, "lat": userLocation.latitude, "lon": userLocation.longitude]
+        if let user = Auth.auth().currentUser, let email = user.email {
             
             dataBaseRef = Database.database().reference()
-            dataBaseRef?.child(DataBaseFieldsNames.rideRequests).childByAutoId().setValue(rideRequestDictionary)
+            
+            if uberHasBeenCalled {
+                
+                dataBaseRef?.child(DataBaseFieldsNames.rideRequests).child(user.uid).removeValue()
+                
+                uberHasBeenCalled = false
+                
+                callAnUberButton.setTitle("Call an Uber", for: .normal)
+                
+            } else {
+                
+                let rideRequestDictionary: [String: Any] = [
+                    DataBaseFieldsNames.email: email,
+                    DataBaseFieldsNames.latitude: userLocation.latitude,
+                    DataBaseFieldsNames.longitude: userLocation.longitude]
+                
+                dataBaseRef?.child(DataBaseFieldsNames.rideRequests).child(user.uid).setValue(rideRequestDictionary)
+                
+                uberHasBeenCalled = true
+                
+                callAnUberButton.setTitle("Cancel Uber", for: .normal)
+                
+            }
             
         }
         

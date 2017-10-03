@@ -9,5 +9,9 @@
 import Foundation
 
 struct DataBaseFieldsNames {
+
     static let rideRequests = "RideRequests"
+    static let email = "email"
+    static let latitude = "latitude"
+    static let longitude = "longitude"
 }
