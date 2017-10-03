@@ -18,7 +18,7 @@ class RiderVC: UIViewController {
     
     //MARK: - Properties
     var locationManager = CLLocationManager()
-    var dataBaseRef: DatabaseReference?
+    var dataBaseRef: DatabaseReference = Database.database().reference()
     var userLocation = CLLocationCoordinate2D()
     var uberHasBeenCalled = false
     
@@ -30,12 +30,32 @@ class RiderVC: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        if let user = Auth.auth().currentUser, let email = user.email {
+            
+            dataBaseRef.child(DataBaseFieldsNames.rideRequests).child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let value = snapshot.value as? NSDictionary
+                let userEmail = value?[DataBaseFieldsNames.email] as? String ?? ""
+                
+                if userEmail == email {
+                    
+                    self.isStillCallingUber(buttonTitle: "Cancel Uber", hasBeenCanceled: true)
+                    
+                }
+                
+            })
+            
+        }
+        
     }
     
     //MARK: - @IBActions
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
         
+        try? Auth.auth().signOut()
         
+        navigationController?.dismiss(animated: true, completion: nil)
         
     }
     
@@ -43,15 +63,11 @@ class RiderVC: UIViewController {
         
         if let user = Auth.auth().currentUser, let email = user.email {
             
-            dataBaseRef = Database.database().reference()
-            
             if uberHasBeenCalled {
                 
-                dataBaseRef?.child(DataBaseFieldsNames.rideRequests).child(user.uid).removeValue()
+                dataBaseRef.child(DataBaseFieldsNames.rideRequests).child(user.uid).removeValue()
                 
-                uberHasBeenCalled = false
-                
-                callAnUberButton.setTitle("Call an Uber", for: .normal)
+                isStillCallingUber(buttonTitle: "Call an Uber", hasBeenCanceled: false)
                 
             } else {
                 
@@ -60,18 +76,29 @@ class RiderVC: UIViewController {
                     DataBaseFieldsNames.latitude: userLocation.latitude,
                     DataBaseFieldsNames.longitude: userLocation.longitude]
                 
-                dataBaseRef?.child(DataBaseFieldsNames.rideRequests).child(user.uid).setValue(rideRequestDictionary)
+                dataBaseRef.child(DataBaseFieldsNames.rideRequests).child(user.uid).setValue(rideRequestDictionary)
                 
-                uberHasBeenCalled = true
-                
-                callAnUberButton.setTitle("Cancel Uber", for: .normal)
+                isStillCallingUber(buttonTitle: "Cancel Uber", hasBeenCanceled: true)
                 
             }
             
         }
         
     }
- 
+    
+    
+    /// Method change current state of Uber Call.
+    ///
+    /// - Parameters:
+    ///   - title: Call Uber Button title
+    ///   - canceled: If Uber Call is canceled
+    func isStillCallingUber(buttonTitle title: String, hasBeenCanceled canceled: Bool) {
+        
+        uberHasBeenCalled = canceled
+        callAnUberButton.setTitle(title, for: .normal)
+        
+    }
+    
 
 }
 
