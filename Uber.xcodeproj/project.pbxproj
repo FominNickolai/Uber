@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		1C72172CE3051AB865DC9074 /* Pods_Uber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513653FA43CA1C2722F7BBB /* Pods_Uber.framework */; };
 		B7B778C71F83B48F000287CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778C61F83B48F000287CC /* AppDelegate.swift */; };
-		B7B778C91F83B48F000287CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778C81F83B48F000287CC /* ViewController.swift */; };
+		B7B778C91F83B48F000287CC /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778C81F83B48F000287CC /* LoginVC.swift */; };
 		B7B778CC1F83B48F000287CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7B778CA1F83B48F000287CC /* Main.storyboard */; };
 		B7B778CE1F83B48F000287CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7B778CD1F83B48F000287CC /* Assets.xcassets */; };
 		B7B778D11F83B48F000287CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7B778CF1F83B48F000287CC /* LaunchScreen.storyboard */; };
 		B7B778D91F83B4D6000287CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B778D81F83B4D2000287CC /* GoogleService-Info.plist */; };
+		B7B778DB1F8404B7000287CC /* RiderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778DA1F8404B7000287CC /* RiderVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,12 +22,13 @@
 		7513653FA43CA1C2722F7BBB /* Pods_Uber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B778C31F83B48F000287CC /* Uber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B778C61F83B48F000287CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B7B778C81F83B48F000287CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B7B778C81F83B48F000287CC /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B7B778CB1F83B48F000287CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7B778CD1F83B48F000287CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7B778D01F83B48F000287CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7B778D21F83B48F000287CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7B778D81F83B4D2000287CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B7B778DA1F8404B7000287CC /* RiderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderVC.swift; sourceTree = "<group>"; };
 		F3750E61174011E4A12EA9B1 /* Pods-Uber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uber.release.xcconfig"; path = "Pods/Target Support Files/Pods-Uber/Pods-Uber.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				B7B778C61F83B48F000287CC /* AppDelegate.swift */,
-				B7B778C81F83B48F000287CC /* ViewController.swift */,
+				B7B778C81F83B48F000287CC /* LoginVC.swift */,
+				B7B778DA1F8404B7000287CC /* RiderVC.swift */,
 				B7B778CA1F83B48F000287CC /* Main.storyboard */,
 				B7B778CD1F83B48F000287CC /* Assets.xcassets */,
 				B7B778CF1F83B48F000287CC /* LaunchScreen.storyboard */,
@@ -215,7 +218,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7B778C91F83B48F000287CC /* ViewController.swift in Sources */,
+				B7B778DB1F8404B7000287CC /* RiderVC.swift in Sources */,
+				B7B778C91F83B48F000287CC /* LoginVC.swift in Sources */,
 				B7B778C71F83B48F000287CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

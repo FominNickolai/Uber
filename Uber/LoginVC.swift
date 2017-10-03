@@ -9,7 +9,12 @@
 import UIKit
 import FirebaseAuth
 
-class ViewController: UIViewController {
+fileprivate struct SeguesIdentifier {
+    static let riderSegue = "riderSegue"
+    private init() {}
+}
+
+class LoginVC: UIViewController {
     
     //MARK: - @IBOutlets
     @IBOutlet weak var emailTextField: UITextField!
@@ -113,7 +118,7 @@ class ViewController: UIViewController {
                 
             } else {
                 
-                print("Sign Up Success")
+                self.performSegue(withIdentifier: SeguesIdentifier.riderSegue, sender: nil)
                 
             }
             
@@ -136,7 +141,7 @@ class ViewController: UIViewController {
                 
             } else {
                 
-                print("Sign In Success")
+                self.performSegue(withIdentifier: SeguesIdentifier.riderSegue, sender: nil)
                 
             }
             
