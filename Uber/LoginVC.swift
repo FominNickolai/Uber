@@ -11,7 +11,13 @@ import FirebaseAuth
 
 fileprivate struct SeguesIdentifier {
     static let riderSegue = "riderSegue"
+    static let driverSegue = "driverSegue"
     private init() {}
+}
+
+fileprivate enum UserType: String {
+    case Driver
+    case Rider
 }
 
 class LoginVC: UIViewController {
@@ -119,12 +125,31 @@ class LoginVC: UIViewController {
                 
             } else {
                 
-                self.performSegue(withIdentifier: SeguesIdentifier.riderSegue, sender: nil)
+                if self.riderDriverSwitch.isOn {
+                    //Driver
+                    self.updateUserDisplayName(withUserType: .Driver, andPerformSegueWithIdentifier: SeguesIdentifier.driverSegue)
+                    
+                } else {
+                    //Rider
+                    self.updateUserDisplayName(withUserType: .Rider, andPerformSegueWithIdentifier: SeguesIdentifier.riderSegue)
+                }
                 
             }
             
         })
         
+    }
+    
+    /// Method updates user display name
+    ///
+    /// - Parameters:
+    ///   - userType: Type of User Rider or Driver
+    ///   - identifier: Segue Identifier
+    fileprivate func updateUserDisplayName(withUserType userType: UserType, andPerformSegueWithIdentifier identifier: String) {
+        let request = Auth.auth().currentUser?.createProfileChangeRequest()
+        request?.displayName = userType.rawValue
+        request?.commitChanges(completion: nil)
+        self.performSegue(withIdentifier: identifier, sender: nil)
     }
     
     /// Sign In to Firebase with email and password
@@ -142,8 +167,16 @@ class LoginVC: UIViewController {
                 
             } else {
                 
-                self.performSegue(withIdentifier: SeguesIdentifier.riderSegue, sender: nil)
-                
+                switch user?.displayName {
+                case UserType.Driver.rawValue?:
+                    //Driver
+                    self.performSegue(withIdentifier: SeguesIdentifier.driverSegue, sender: nil)
+                case UserType.Rider.rawValue?:
+                    //Rider
+                    self.performSegue(withIdentifier: SeguesIdentifier.riderSegue, sender: nil)
+                default:
+                    break
+                }
             }
             
         })
