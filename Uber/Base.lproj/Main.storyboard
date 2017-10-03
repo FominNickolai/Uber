@@ -67,6 +67,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTz-9I-KJl">
                                         <rect key="frame" x="0.0" y="171.5" width="335" height="30"/>
                                         <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="topTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Mh-nL-4QM"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zj-7R-sg6">
                                         <rect key="frame" x="0.0" y="216.5" width="335" height="20.5"/>
@@ -77,6 +80,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0As-Ag-0cs">
                                         <rect key="frame" x="0.0" y="252" width="335" height="30"/>
                                         <state key="normal" title="Switch to Log In"/>
+                                        <connections>
+                                            <action selector="bottomTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="igb-5M-2lq"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -89,6 +95,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="bottomButton" destination="0As-Ag-0cs" id="5HI-5F-oM1"/>
+                        <outlet property="driverRiderStack" destination="WKq-BX-39H" id="52C-1s-Lnc"/>
+                        <outlet property="emailTextField" destination="MiL-Rq-2FY" id="zeD-yV-YLq"/>
+                        <outlet property="passwordTextField" destination="sCC-av-aRd" id="kfJ-Hg-3Gt"/>
+                        <outlet property="riderDriverSwitch" destination="r0s-Qp-f3s" id="AD8-Y0-EsM"/>
+                        <outlet property="topButton" destination="BTz-9I-KJl" id="Gou-ip-eis"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
