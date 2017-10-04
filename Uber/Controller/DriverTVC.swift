@@ -43,9 +43,13 @@ class DriverTVC: UITableViewController {
             
         }
         
-        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (timer) in
-            self.tableView.reloadData()
-        }
+        startTimerForUpdatingRidersLocation()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTimerForUpdatingRidersLocation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,6 +61,7 @@ class DriverTVC: UITableViewController {
         print("Deinit DriverTVC")
     }
 
+    //MARK: - @IBActions
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
         
         try? Auth.auth().signOut()
@@ -65,6 +70,14 @@ class DriverTVC: UITableViewController {
         
     }
     
+    //MARK: - Methods
+    /// Update riders location
+    func startTimerForUpdatingRidersLocation() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (timer) in
+            self.tableView.reloadData()
+        }
+    }
     
     //MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,7 +132,7 @@ class DriverTVC: UITableViewController {
                         
                         acceptVC.requestLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                         acceptVC.requestEmail = email
-                        
+                        acceptVC.driverLocation = driverLocation
                     }
                 }
             }

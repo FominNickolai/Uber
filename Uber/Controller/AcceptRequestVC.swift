@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseDatabase
 
 class AcceptRequestVC: UIViewController {
 
@@ -15,7 +16,9 @@ class AcceptRequestVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     //MARK: - Properties
+    var dataBaseRef: DatabaseReference = Database.database().reference()
     var requestLocation = CLLocationCoordinate2D()
+    var driverLocation = CLLocationCoordinate2D()
     var requestEmail = ""
     
     //MARK: - Life cycle
@@ -38,10 +41,43 @@ class AcceptRequestVC: UIViewController {
 
     //MARK: - @IBActions
     @IBAction func acceptRequestTapped(_ sender: UIButton) {
+        //Update the ride Request
+        dataBaseRef.child(DataBaseFieldsNames.rideRequests).queryOrdered(byChild: DataBaseFieldsNames.email).queryEqual(toValue: requestEmail).observe(.childAdded) { (snapshot) in
+            
+            snapshot.ref.updateChildValues(["driverLat": self.driverLocation.latitude, "driverLon": self.driverLocation.longitude])
+            
+            self.dataBaseRef.child(DataBaseFieldsNames.rideRequests).removeAllObservers()
+        }
         
-        
+        //Give Directions
+        let requestCLLocation = CLLocation(latitude: requestLocation.latitude, longitude: requestLocation.longitude)
+        CLGeocoder().reverseGeocodeLocation(requestCLLocation) { (placemarks, error) in
+            
+            if let placemarks = placemarks {
+                if !placemarks.isEmpty {
+                    let mkPlaceMark = MKPlacemark(placemark: placemarks[0])
+                    let mapItem = MKMapItem(placemark: mkPlaceMark)
+                    mapItem.name = self.requestEmail
+                    let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+                    mapItem.openInMaps(launchOptions: options)
+                }
+            }
+            
+        }
         
     }
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
