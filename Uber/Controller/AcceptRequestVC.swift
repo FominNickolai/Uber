@@ -44,7 +44,7 @@ class AcceptRequestVC: UIViewController {
         //Update the ride Request
         dataBaseRef.child(DataBaseFieldsNames.rideRequests).queryOrdered(byChild: DataBaseFieldsNames.email).queryEqual(toValue: requestEmail).observe(.childAdded) { (snapshot) in
             
-            snapshot.ref.updateChildValues(["driverLat": self.driverLocation.latitude, "driverLon": self.driverLocation.longitude])
+            snapshot.ref.updateChildValues([DataBaseFieldsNames.driverLatitude: self.driverLocation.latitude, DataBaseFieldsNames.driverLongitude: self.driverLocation.longitude])
             
             self.dataBaseRef.child(DataBaseFieldsNames.rideRequests).removeAllObservers()
         }

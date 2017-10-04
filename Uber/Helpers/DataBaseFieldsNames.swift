@@ -14,4 +14,6 @@ struct DataBaseFieldsNames {
     static let email = "email"
     static let latitude = "latitude"
     static let longitude = "longitude"
+    static let driverLatitude = "driverLatitude"
+    static let driverLongitude = "driverLongitude"
 }

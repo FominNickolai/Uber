@@ -38,8 +38,14 @@ class DriverTVC: UITableViewController {
 
         dataBaseRef.child(DataBaseFieldsNames.rideRequests).observe(.childAdded) { (snapshot) in
             
-            self.rideRequests.append(snapshot)
-            self.tableView.reloadData()
+            if let rideRequestDictionary = snapshot.value as? [String: AnyObject] {
+                if let driverLatitude = rideRequestDictionary[DataBaseFieldsNames.driverLatitude] as? Double, let driverLongitude = rideRequestDictionary[DataBaseFieldsNames.driverLongitude] as? Double {
+
+                } else {
+                    self.rideRequests.append(snapshot)
+                    self.tableView.reloadData()
+                }
+            }       
             
         }
         
