@@ -12,7 +12,7 @@ import FirebaseAuth
 import MapKit
 
 fileprivate struct SeguesIdentifier {
-    static let rideRequestCell = "rideRequestCell"
+    static let acceptSegue = "acceptSegue"
     private init() {}
 }
 
@@ -65,12 +65,14 @@ class DriverTVC: UITableViewController {
         
     }
     
+    
+    //MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rideRequests.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SeguesIdentifier.rideRequestCell, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rideRequestCell", for: indexPath)
         
         let snapshot = rideRequests[indexPath.row]
         
@@ -87,15 +89,45 @@ class DriverTVC: UITableViewController {
                     let roundedDistance = round(distance * 100) / 100
                     
                     cell.textLabel?.text = "\(email) - \(roundedDistance)km away"
-                }
-                
-                
+                }              
                 
             }
             
         }
         
         return cell
+    }
+    
+    //MARK: - UITableViewDelegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let snapshot = rideRequests[indexPath.row]
+        performSegue(withIdentifier: SeguesIdentifier.acceptSegue, sender: snapshot)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == SeguesIdentifier.acceptSegue {
+            
+            guard let acceptVC = segue.destination as? AcceptRequestVC else { return }
+            guard let snapshot = sender as? DataSnapshot else { return }
+            
+            if let rideRequestDictionary = snapshot.value as? [String: AnyObject] {
+                
+                if let email = rideRequestDictionary[DataBaseFieldsNames.email] as? String {
+                    
+                    if let lat = rideRequestDictionary[DataBaseFieldsNames.latitude] as? Double, let lon = rideRequestDictionary[DataBaseFieldsNames.longitude] as? Double {
+                        
+                        acceptVC.requestLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                        acceptVC.requestEmail = email
+                        
+                    }
+                }
+            }
+            
+            
+            
+        }
+        
     }
 }
 

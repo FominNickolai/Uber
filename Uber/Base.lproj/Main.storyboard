@@ -207,10 +207,53 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="orw-3j-TUA" kind="show" identifier="acceptSegue" id="Lhq-VX-Wo5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Stg-jl-ACz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1740" y="874"/>
+        </scene>
+        <!--Accept RequestVC-->
+        <scene sceneID="D0y-78-DHu">
+            <objects>
+                <viewController id="orw-3j-TUA" customClass="AcceptRequestVC" customModule="Uber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="99V-Kk-n0N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6iJ-T4-EHb">
+                                <rect key="frame" x="20" y="84" width="335" height="335"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6iJ-T4-EHb" secondAttribute="height" multiplier="1:1" id="RRE-T9-bUB"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXE-JC-l6c">
+                                <rect key="frame" x="133" y="434" width="109" height="30"/>
+                                <state key="normal" title="Accept Request"/>
+                                <connections>
+                                    <action selector="acceptRequestTapped:" destination="orw-3j-TUA" eventType="touchUpInside" id="bW7-ac-xdn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bbr-EZ-Qme" firstAttribute="trailing" secondItem="6iJ-T4-EHb" secondAttribute="trailing" constant="20" id="OeZ-55-Enc"/>
+                            <constraint firstItem="6iJ-T4-EHb" firstAttribute="leading" secondItem="bbr-EZ-Qme" secondAttribute="leading" constant="20" id="Pb6-GT-kCP"/>
+                            <constraint firstItem="oXE-JC-l6c" firstAttribute="top" secondItem="6iJ-T4-EHb" secondAttribute="bottom" constant="15" id="apx-q4-KNE"/>
+                            <constraint firstItem="6iJ-T4-EHb" firstAttribute="top" secondItem="bbr-EZ-Qme" secondAttribute="top" constant="20" id="nSK-7P-jyk"/>
+                            <constraint firstItem="oXE-JC-l6c" firstAttribute="centerX" secondItem="99V-Kk-n0N" secondAttribute="centerX" id="sK6-bA-5Cy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bbr-EZ-Qme"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="6iJ-T4-EHb" id="4ZK-fw-IhV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jM8-Dl-TvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2581.5999999999999" y="874.81259370314854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yGn-a6-9LY">
