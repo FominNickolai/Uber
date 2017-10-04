@@ -51,6 +51,10 @@ class RiderVC: UIViewController {
         
     }
     
+    deinit {
+        print("Deinit RiderVC")
+    }
+    
     //MARK: - @IBActions
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
         

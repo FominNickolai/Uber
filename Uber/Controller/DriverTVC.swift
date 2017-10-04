@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import MapKit
 
 fileprivate struct SeguesIdentifier {
     static let rideRequestCell = "rideRequestCell"
@@ -22,10 +23,18 @@ class DriverTVC: UITableViewController {
     //MARK: - Properties
     var dataBaseRef: DatabaseReference = Database.database().reference()
     var rideRequests = [DataSnapshot]()
+    var locationManager = CLLocationManager()
+    var driverLocation = CLLocationCoordinate2D()
+    var timer: Timer?
     
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
 
         dataBaseRef.child(DataBaseFieldsNames.rideRequests).observe(.childAdded) { (snapshot) in
             
@@ -33,6 +42,19 @@ class DriverTVC: UITableViewController {
             self.tableView.reloadData()
             
         }
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (timer) in
+            self.tableView.reloadData()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer?.invalidate()
+    }
+    
+    deinit {
+        print("Deinit DriverTVC")
     }
 
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
@@ -56,7 +78,18 @@ class DriverTVC: UITableViewController {
             
             if let email = rideRequestDictionary[DataBaseFieldsNames.email] as? String {
                 
-                cell.textLabel?.text = email
+                if let lat = rideRequestDictionary[DataBaseFieldsNames.latitude] as? Double, let lon = rideRequestDictionary[DataBaseFieldsNames.longitude] as? Double {
+                    
+                    let driverCLLocation = CLLocation(latitude: driverLocation.latitude, longitude: driverLocation.longitude)
+                    let riderCLLocation = CLLocation(latitude: lat, longitude: lon)
+                    
+                    let distance = driverCLLocation.distance(from: riderCLLocation) / 1000
+                    let roundedDistance = round(distance * 100) / 100
+                    
+                    cell.textLabel?.text = "\(email) - \(roundedDistance)km away"
+                }
+                
+                
                 
             }
             
@@ -66,7 +99,20 @@ class DriverTVC: UITableViewController {
     }
 }
 
-
+//MARK: - CLLocationManagerDelegate
+extension DriverTVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if let coord =  manager.location?.coordinate {
+            
+            driverLocation = coord
+        
+        }
+        
+    }
+    
+}
 
 
 
