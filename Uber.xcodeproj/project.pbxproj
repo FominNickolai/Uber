@@ -17,6 +17,7 @@
 		B7B778DB1F8404B7000287CC /* RiderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778DA1F8404B7000287CC /* RiderVC.swift */; };
 		B7B778DD1F840A71000287CC /* DataBaseFieldsNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778DC1F840A71000287CC /* DataBaseFieldsNames.swift */; };
 		B7B778DF1F841960000287CC /* StringsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778DE1F841960000287CC /* StringsConstants.swift */; };
+		B7B778E11F84E8E2000287CC /* DriverTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B778E01F84E8E2000287CC /* DriverTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		B7B778DA1F8404B7000287CC /* RiderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderVC.swift; sourceTree = "<group>"; };
 		B7B778DC1F840A71000287CC /* DataBaseFieldsNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseFieldsNames.swift; sourceTree = "<group>"; };
 		B7B778DE1F841960000287CC /* StringsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsConstants.swift; sourceTree = "<group>"; };
+		B7B778E01F84E8E2000287CC /* DriverTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTVC.swift; sourceTree = "<group>"; };
 		F3750E61174011E4A12EA9B1 /* Pods-Uber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uber.release.xcconfig"; path = "Pods/Target Support Files/Pods-Uber/Pods-Uber.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,18 +88,35 @@
 		B7B778C51F83B48F000287CC /* Uber */ = {
 			isa = PBXGroup;
 			children = (
+				B7B778E31F84E8F7000287CC /* Helpers */,
+				B7B778E21F84E8E9000287CC /* Controller */,
 				B7B778C61F83B48F000287CC /* AppDelegate.swift */,
-				B7B778C81F83B48F000287CC /* LoginVC.swift */,
-				B7B778DA1F8404B7000287CC /* RiderVC.swift */,
 				B7B778CA1F83B48F000287CC /* Main.storyboard */,
 				B7B778CD1F83B48F000287CC /* Assets.xcassets */,
 				B7B778CF1F83B48F000287CC /* LaunchScreen.storyboard */,
 				B7B778D21F83B48F000287CC /* Info.plist */,
 				B7B778D81F83B4D2000287CC /* GoogleService-Info.plist */,
+			);
+			path = Uber;
+			sourceTree = "<group>";
+		};
+		B7B778E21F84E8E9000287CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B7B778C81F83B48F000287CC /* LoginVC.swift */,
+				B7B778DA1F8404B7000287CC /* RiderVC.swift */,
+				B7B778E01F84E8E2000287CC /* DriverTVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B7B778E31F84E8F7000287CC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
 				B7B778DC1F840A71000287CC /* DataBaseFieldsNames.swift */,
 				B7B778DE1F841960000287CC /* StringsConstants.swift */,
 			);
-			path = Uber;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +247,7 @@
 				B7B778DB1F8404B7000287CC /* RiderVC.swift in Sources */,
 				B7B778DF1F841960000287CC /* StringsConstants.swift in Sources */,
 				B7B778C91F83B48F000287CC /* LoginVC.swift in Sources */,
+				B7B778E11F84E8E2000287CC /* DriverTVC.swift in Sources */,
 				B7B778C71F83B48F000287CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

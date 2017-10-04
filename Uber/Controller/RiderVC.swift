@@ -8,7 +8,8 @@
 
 import UIKit
 import MapKit
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class RiderVC: UIViewController {
     
